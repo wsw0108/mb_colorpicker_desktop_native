@@ -1,0 +1,17 @@
+add_rules("mode.debug", "mode.release")
+
+set_languages("cxx17")
+set_warnings("all", "all")
+-- set_warnings("all", "error")
+
+target("ColorPicker")
+    set_kind("binary")
+    add_files("src/*.cxx", "src/Windows/*.cxx")
+    on_load("xxd")
+    add_includedirs("src", "src/Windows")
+    -- add_rules("platform.windows")
+    -- add_rules("win.sdk.application")
+    -- add_rules("win.sdk.mfc.static_app")
+    add_defines("OS_WINDOWS", "UNICODE", "RELEASE")
+    -- add_cxxflags("/Zi")
+    add_links("kernel32", "user32", "gdi32", "ole32")

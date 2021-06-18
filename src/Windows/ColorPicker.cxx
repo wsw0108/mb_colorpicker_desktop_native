@@ -475,7 +475,7 @@ MainWindow::onRefreshTimerTick()
             class PerformanceCounter<float> counter(&painting_time);
             drawClientContent();
         }
-        fprintf(stderr, "Paint Time %f ms\n", painting_time/1000);
+        // fprintf(stderr, "Paint Time %f ms\n", painting_time/1000);
     }
 
     record_screen_render_data_fresh_ratio_counter += 1;
@@ -667,6 +667,8 @@ void
 PreRun(class Instance* instance)
 {
     fprintf(stderr, "%s\n", __PRETTY_FUNCTION__);
+
+    SetProcessDPIAware();
 
     auto inst_info = instance->InstanceInfo();
     auto exec_mode = inst_info->CommandLineParameter<int>(L"--mode=");

@@ -16,3 +16,7 @@ Thumbs.db
 # npm
 node_modules/
 package-lock.json
+
+.xmake
+build/
+vs2019/

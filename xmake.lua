@@ -4,7 +4,7 @@ set_languages("cxx17")
 set_warnings("all", "all")
 -- set_warnings("all", "error")
 
-if is_plat("windows") then
+if is_plat("windows", "mingw") then
 target("ColorPicker")
     set_kind("binary")
     add_files("src/*.cxx", "src/Windows/*.cxx")
@@ -16,6 +16,9 @@ target("ColorPicker")
     add_defines("OS_WINDOWS", "UNICODE", "RELEASE")
     -- add_cxxflags("/Zi")
     add_links("kernel32", "user32", "gdi32", "ole32")
+    if is_plat("mingw") then
+        add_links("gdiplus", "windowscodecs")
+    end
 end
 
 if is_plat("macosx") then
